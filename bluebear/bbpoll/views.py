@@ -3,12 +3,11 @@ from django.http import HttpResponse
 from .models import Question
 
 def index(request):
-    Questions=Question.objects.all()
-    output=""
-    for q in Questions:
+    questions = Question.objects.all()
+    output = ""
+    for q in questions:
         output += q.question_text
         output += "\n"
-        
     return HttpResponse(output)
 
 def detail(request, question_id):
