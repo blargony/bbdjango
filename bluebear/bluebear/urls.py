@@ -19,5 +19,6 @@ from django.urls import include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^bbpoll/', include("bbpoll.urls"))
+    url(r'^bbpoll/', include("bbpoll.urls")),
+    url(r'^ggpoll/', include("ggpoll.urls"))
 ]

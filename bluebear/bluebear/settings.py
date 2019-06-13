@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ggpoll.apps.GgpollConfig',
     'bbpoll.apps.BbpollConfig',
     'django.contrib.admin',
     'django.contrib.auth',
