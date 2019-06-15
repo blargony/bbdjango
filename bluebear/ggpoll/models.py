@@ -1,27 +1,50 @@
 import datetime
 
 from django.db import models
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.utils import timezone
 
+
 class Question(models.Model):
+    """
+    GG Question.  The text of one question asked.
+    Includes an option to make the question active or hide it
+    while we finish work on the answers.
+    """
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    active = models.BooleanField()
 
     def __str__(self):
         return self.question_text
 
-    def was_published_recently(self):
-        """List of Questions created in the past day."""
-        now = timezone.now()
-        return now >= self.pub_date and self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
-
-class Choice(models.Model):
+class Answer(models.Model):
+    """
+    Possible answer to a given question.
+    Includes the weighting for which God the user favors.
+    """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    jupiter = models.IntegerField(
+        default=0,
+        validators=[MinValueValidator(0), MaxValueValidator(10)]
+    )
 
     def __str__(self):
         return self.choice_text
 
 
+class GGUser(models.Model):
+    """
+    A user taking the poll.  Holds the log of the answers they have given.
+
+    Allows the user to create a name and personal motto for fun.
+    """
+    name = models.CharField(max_length=100)
+    motto = models.CharField(max_length=300)
+
+    answers = models.ManyToManyField(Answer)
+
+    def __str__(self):
+        return self.name

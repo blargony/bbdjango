@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
 
-from .models import Question, Choice
+from .models import Question, Answer
 
 
 def index(request):
@@ -28,7 +28,7 @@ def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
-    except (KeyError, Choice.DoesNotExist):
+    except (KeyError, Answer.DoesNotExist):
         return render(request, "bbpoll/detail.html", {"question":question, "error_message": "You didn't select a choice please select a choice"})
     else:
         selected_choice.votes += 1
