@@ -13,6 +13,9 @@ class GGQuestion(models.Model):
     def __str__(self):
         return self.question_text
 
+    class Meta:
+        verbose_name = 'Poll Question'
+
 
 class GGGroup(models.Model):
     """A group that a User can be a member of."""
@@ -21,6 +24,9 @@ class GGGroup(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'God'
 
 
 class GGAnswer(models.Model):
@@ -37,6 +43,9 @@ class GGAnswer(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+    class Meta:
+        verbose_name = 'Answer'
 
 
 class GGGroupWeight(models.Model):
@@ -64,3 +73,6 @@ class GGUser(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Poll User'
