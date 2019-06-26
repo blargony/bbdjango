@@ -1,0 +1,162 @@
+[
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 1,
+        "fields": {
+            "name": "Janus",
+            "description": "God of Transitions"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 2,
+        "fields": {
+            "name": "Jupiter",
+            "description": "God of the Sky"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 3,
+        "fields": {
+            "name": "Saturn",
+            "description": "God of Time"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 4,
+        "fields": {
+            "name": "Mercury",
+            "description": "Messenger God"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 5,
+        "fields": {
+            "name": "Apollo",
+            "description": "God of Light"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 6,
+        "fields": {
+            "name": "Mars",
+            "description": "God of War"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 7,
+        "fields": {
+            "name": "Vulcan",
+            "description": "God of the Forge"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 8,
+        "fields": {
+            "name": "Neptune",
+            "description": "God of the Sea"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 9,
+        "fields": {
+            "name": "Sol",
+            "description": "God of the Sun"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 10,
+        "fields": {
+            "name": "Orcus",
+            "description": "God of the Underworld"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 11,
+        "fields": {
+            "name": "Liber",
+            "description": "God of Viticulture"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 12,
+        "fields": {
+            "name": "Bacchus",
+            "description": "God of Wine"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 13,
+        "fields": {
+            "name": "Tellus",
+            "description": "Goddess of the Earth"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 14,
+        "fields": {
+            "name": "Ceres",
+            "description": "Goddess of Grain"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 15,
+        "fields": {
+            "name": "Juno",
+            "description": "Queen of the Gods"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 16,
+        "fields": {
+            "name": "Luna",
+            "description": "Goddess of the Moon"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 17,
+        "fields": {
+            "name": "Diana",
+            "description": "Goddess of the Hunt"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 18,
+        "fields": {
+            "name": "Minerva",
+            "description": "Goddess of Wisdom"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 19,
+        "fields": {
+            "name": "Venus",
+            "description": "Goddess of Love"
+        }
+    },
+    {
+        "model": "ggpoll.gggroup",
+        "pk": 20,
+        "fields": {
+            "name": "Vesta",
+            "description": "Goddess of the Hearth"
+        }
+    }
+]
