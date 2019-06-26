@@ -1,9 +1,4 @@
-import datetime
-
 from django.db import models
-from django.core.validators import MaxValueValidator
-from django.core.validators import MinValueValidator
-from django.utils import timezone
 
 
 class GGQuestion(models.Model):
@@ -19,20 +14,41 @@ class GGQuestion(models.Model):
         return self.question_text
 
 
+class GGGroup(models.Model):
+    """A group that a User can be a member of."""
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
 class GGAnswer(models.Model):
     """
     Possible answer to a given question.
-    Includes the weighting for which God the user favors.
+    Then links to the groups (e.g. Gods, Houses, etc.) that this
+    answer will associate the user with.   The link to the groups includes
+    a programmable weighting, so the answer can be loosely or strongly
+    coorelated with a given grouping.
     """
     question = models.ForeignKey(GGQuestion, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    jupiter = models.IntegerField(
-        default=0,
-        validators=[MinValueValidator(0), MaxValueValidator(10)]
-    )
+    groups = models.ManyToManyField(GGGroup, through='GGGroupWeight')
 
     def __str__(self):
         return self.choice_text
+
+
+class GGGroupWeight(models.Model):
+    WEIGHT_CHOICES = (
+        (0, 0),
+        (1, 1),
+        (2, 2),
+        (3, 3)
+    )
+    group = models.ForeignKey(GGGroup, on_delete=models.CASCADE)
+    answer = models.ForeignKey(GGAnswer, on_delete=models.CASCADE)
+    weight = models.IntegerField(choices=WEIGHT_CHOICES, default=0)
 
 
 class GGUser(models.Model):
