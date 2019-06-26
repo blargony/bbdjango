@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 from django.utils import timezone
 
 
-class Question(models.Model):
+class GGQuestion(models.Model):
     """
     GG Question.  The text of one question asked.
     Includes an option to make the question active or hide it
@@ -19,12 +19,12 @@ class Question(models.Model):
         return self.question_text
 
 
-class Answer(models.Model):
+class GGAnswer(models.Model):
     """
     Possible answer to a given question.
     Includes the weighting for which God the user favors.
     """
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(GGQuestion, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     jupiter = models.IntegerField(
         default=0,
@@ -44,7 +44,7 @@ class GGUser(models.Model):
     name = models.CharField(max_length=100)
     motto = models.CharField(max_length=300)
 
-    answers = models.ManyToManyField(Answer)
+    answers = models.ManyToManyField(GGAnswer)
 
     def __str__(self):
         return self.name

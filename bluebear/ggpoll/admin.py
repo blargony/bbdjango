@@ -1,16 +1,16 @@
 from django.contrib import admin
 
-from .models import Question, Answer, GGUser
+from .models import GGQuestion, GGAnswer, GGUser
 
-class AnswerInLine(admin.TabularInline):
-    model = Answer
+class GGAnswerInLine(admin.TabularInline):
+    model = GGAnswer
 
 class QuestionAdmin(admin.ModelAdmin):
-    inlines = [ AnswerInLine, ]
+    inlines = [ GGAnswerInLine, ]
 
 class GGUserAdmin(admin.ModelAdmin):
     model = GGUser
 
 
-admin.site.register(Question, QuestionAdmin)
+admin.site.register(GGQuestion, QuestionAdmin)
 admin.site.register(GGUser, GGUserAdmin)
