@@ -1,17 +1,19 @@
 {% extends "ggpoll/base.html" %}
 
 {% block content %}
-<h1 class="mt-5">Please Enter you name and your personal motto!</h1>
+<h1 class="mt-5 text-center">Please enter your name and your personal motto!</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'ggpoll:begin' %}" method="post">
 {% csrf_token %}
+<div id="answers" class="text-center">
 	<input type="text" name="name" id="name">
 	<label for="name">Name</label><br>
 	<input type="text" name="motto" id="motto">
 	<label for="motto">Motto</label><br>
 <input type="submit" value="Initium!">
+</div>
 </form>
 
 {% endblock %}
