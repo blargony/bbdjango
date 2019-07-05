@@ -67,7 +67,10 @@ def results(request):
         for weighted_group in answer.gggroupweight_set.all():
             totals[weighted_group.group] += weighted_group.weight
     sorted_totals = sorted(totals, key=totals.get)
-    context = {"top_score": sorted_totals[0]}
+    context = {"top_score": sorted_totals[-1],
+               "totals": totals.items(),
+               "user": user,
+               }
     return render(request, "ggpoll/results.html", context)
 
 

@@ -1,5 +1,15 @@
 <h1>{{ top_score.name }}</h1>
-
 <p>{{ top_score.description }}</p>
 
+<p>Hello {{ user.name }}!</p>
+<p>Thanks for taking our quiz.  As you can see you should worship {{ top_score.name }}.</p>
 <a href="{% url 'ggpoll:begin' %}">Would you like to start again?</a>
+<p></p>
+
+<table>
+  <tr><th>God</th><th>Score</th></tr>
+{% for god, score in totals %}
+  <tr><td>{{ god }}</td><td>{{ score }}</td></tr>
+{% endfor %}
+</table>
+
