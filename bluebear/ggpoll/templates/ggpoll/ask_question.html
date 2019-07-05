@@ -1,5 +1,7 @@
 <h1>{{ question.question_text }}</h1>
 
+<h3>{{ question.pk }} of {{ question_count }}</h3>
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'ggpoll:ask_question' question.id %}" method="post">

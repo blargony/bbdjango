@@ -41,10 +41,12 @@ def begin(request):
 def ask_question(request, question_id):
     question = get_object_or_404(GGQuestion, pk=question_id)
     answers = get_object_or_404(GGAnswer, pk=question_id)
+    question_count = len(GGQuestion.objects.all())
     try:
         selected_answer = question.gganswer_set.get(pk=request.POST["answer"])
     except (KeyError, GGAnswer.DoesNotExist):
         context = {"question": question,
+                   "question_count": question_count,
                    "answers": answers,
                    }
         if request.method == "POST":
