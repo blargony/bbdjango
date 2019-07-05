@@ -19,23 +19,22 @@ def begin(request):
     """Create a simple user that we link all the answers to."""
     request.session.flush()  # "Logout" from any previous session
 
-    try:
+    if request.method == "POST":
         new_name = request.POST["name"]
         new_motto = request.POST["motto"]
-    except KeyError:
-        if request.method == "GET":
-            context = {}
-        else:
+        if not new_name:
             context = {"error_message": "Please pick a name and motto for yourself!"}
-        return render(request, "ggpoll/begin.html", context)
+            return render(request, "ggpoll/begin.html", context)
+        else:
+            # Create the new user and store the user info into the Session
+            # then redirect to the first question
+            new_user = GGUser(name=new_name, motto=new_motto)
+            new_user.save()
+            request.session['user_id'] = new_user.id  # 'log in' with new user
+            first_question = GGQuestion.objects.all()[0]
+            return HttpResponseRedirect(reverse("ggpoll:ask_question", args=(first_question.id, )))
     else:
-        # Create the new user and store the user info into the Session
-        # then redirect to the first question
-        new_user = GGUser(name=new_name, motto=new_motto)
-        new_user.save()
-        request.session['user_id'] = new_user.id  # 'log in' with new user
-        first_question = GGQuestion.objects.all()[0]
-        return HttpResponseRedirect(reverse("ggpoll:ask_question", args=(first_question.id, )))
+        return render(request, "ggpoll/begin.html")
 
 
 def ask_question(request, question_id):
