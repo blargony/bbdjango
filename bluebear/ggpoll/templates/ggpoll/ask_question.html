@@ -1,43 +1,21 @@
-<h1>{{ question.question_text }}</h1>
+{% extends "ggpoll/base.html" %}
 
-<h3>{{ question.pk }} of {{ question_count }}</h3>
+{% block content %}
+<h1 class="mt-5">{{ question.question_text }}</h1>
+
+<p class="text-muted text-center">Question {{ question.pk }} of {{ question_count }}</p>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <form action="{% url 'ggpoll:ask_question' question.id %}" method="post">
 {% csrf_token %}
+<div id="answers" class="text-center">
 {% for answer in question.gganswer_set.all %}
 	<input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
-	<label for="answer{{ forloop.counter }}">{{ answer.answer_text }}</label><br>
+	<label class="answer" for="answer{{ forloop.counter }}">{{ answer.answer_text }}</label><br>
 {% endfor %}
-<input type="submit" value="Vote">
+<input type="submit" value="Pergo">
+</div>
 </form>
 
-<!--
-<div id="answers">
-    <input type="radio" name="rGroup" value="1" id="r1" />
-    <label class="answer" for="r1"></label>
-    <input type="radio" name="rGroup" value="2" id="r2" />
-    <label class="answer" for="r2"></label>
-    <input type="radio" name="rGroup" value="3" id="r3" />
-    <label class="answer" for="r3"></label>
-</div>
-
-.answer{
-    background-color: red;
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-}
-
-#answers input[type=radio]{
-    display: none;
-}
-
-#answers input[type=radio]:checked + .answer{
-    background-color: green;
-}
--->
-
-
-
+{% endblock %}
