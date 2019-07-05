@@ -44,10 +44,12 @@ def ask_question(request, question_id):
     try:
         selected_answer = question.gganswer_set.get(pk=request.POST["answer"])
     except (KeyError, GGAnswer.DoesNotExist):
-        return render(request, "ggpoll/ask_question.html",
-                      {"question": question,
-                       "answers": answers,
-                       "error_message": "You didn't select an answer!"})
+        context = {"question": question,
+                   "answers": answers,
+                   }
+        if request.method == "POST":
+            context = {"error_message": "You didn't select an answer!"}
+        return render(request, "ggpoll/ask_question.html", context)
     else:
         user = get_object_or_404(GGUser, pk=request.session['user_id'])
         user.answers.add(selected_answer)
