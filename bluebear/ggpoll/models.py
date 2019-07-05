@@ -50,14 +50,13 @@ class GGAnswer(models.Model):
 
 class GGGroupWeight(models.Model):
     WEIGHT_CHOICES = (
-        (0, 0),
         (1, 1),
         (2, 2),
         (3, 3)
     )
     group = models.ForeignKey(GGGroup, on_delete=models.CASCADE)
     answer = models.ForeignKey(GGAnswer, on_delete=models.CASCADE)
-    weight = models.IntegerField(choices=WEIGHT_CHOICES, default=0)
+    weight = models.IntegerField(choices=WEIGHT_CHOICES, default=3)
 
 
 class GGUser(models.Model):
