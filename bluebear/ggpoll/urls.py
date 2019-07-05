@@ -5,7 +5,7 @@ from . import views
 app_name = 'ggpoll'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:question_id>/', views.detail, name='detail'),
-    path('<int:question_id>/results/', views.results, name='results'),
-    path('<int:question_id>/vote/', views.vote, name='vote'),
+    path('begin/', views.begin, name='begin'),
+    path('<int:question_id>/', views.ask_question, name='ask_question'),
+    path('results/', views.results, name='results'),
 ]

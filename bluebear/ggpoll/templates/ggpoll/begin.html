@@ -1,0 +1,14 @@
+<h1>Please Enter you name and your personal motto!</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'ggpoll:begin' %}" method="post">
+{% csrf_token %}
+	<input type="text" name="name" id="name">
+	<label for="name">Name</label><br>
+	<input type="text" name="motto" id="motto">
+	<label for="motto">Motto</label><br>
+<input type="submit" value="Let's Roll!">
+</form>
+
+
