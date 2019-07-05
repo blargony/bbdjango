@@ -6,7 +6,7 @@
 {% csrf_token %}
 {% for answer in question.gganswer_set.all %}
 	<input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
-	<label for="answer{{ forloop.counter }}">{{ answer.choice_text }}</label><br>
+	<label for="answer{{ forloop.counter }}">{{ answer.answer_text }}</label><br>
 {% endfor %}
 <input type="submit" value="Vote">
 </form>

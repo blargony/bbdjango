@@ -38,11 +38,11 @@ class GGAnswer(models.Model):
     coorelated with a given grouping.
     """
     question = models.ForeignKey(GGQuestion, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
+    answer_text = models.CharField(max_length=200)
     groups = models.ManyToManyField(GGGroup, through='GGGroupWeight')
 
     def __str__(self):
-        return self.choice_text
+        return self.answer_text
 
     class Meta:
         verbose_name = 'Answer'
