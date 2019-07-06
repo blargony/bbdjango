@@ -1,9 +1,10 @@
+"""Our Views."""
+from collections import defaultdict
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
-
-from collections import defaultdict
 
 from .models import GGQuestion, GGAnswer, GGUser
 
@@ -22,19 +23,18 @@ def begin(request):
     if request.method == "POST":
         new_name = request.POST["name"]
         new_motto = request.POST["motto"]
-        if not new_name:
+        # Try this again if they didn't put in a name
+        if not new_name or not new_motto:
             context = {"error_message": "Please pick a name and motto for yourself!"}
             return render(request, "ggpoll/begin.html", context)
-        else:
-            # Create the new user and store the user info into the Session
-            # then redirect to the first question
-            new_user = GGUser(name=new_name, motto=new_motto)
-            new_user.save()
-            request.session['user_id'] = new_user.id  # 'log in' with new user
-            first_question = GGQuestion.objects.all()[0]
-            return HttpResponseRedirect(reverse("ggpoll:ask_question", args=(first_question.id, )))
-    else:
-        return render(request, "ggpoll/begin.html")
+        # Create the new user and store the user info into the Session
+        # then redirect to the first question
+        new_user = GGUser(name=new_name, motto=new_motto)
+        new_user.save()
+        request.session['user_id'] = new_user.id  # 'log in' with new user
+        first_question = GGQuestion.objects.all()[0]
+        return HttpResponseRedirect(reverse("ggpoll:ask_question", args=(first_question.id, )))
+    return render(request, "ggpoll/begin.html")
 
 
 def ask_question(request, question_id):
@@ -75,5 +75,3 @@ def results(request):
                "user": user,
                }
     return render(request, "ggpoll/results.html", context)
-
-
