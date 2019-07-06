@@ -63,8 +63,11 @@ def ask_question(request, question_id):
 
 
 
-def results(request):
-    user = get_object_or_404(GGUser, pk=request.session['user_id'])
+def results(request, user_id=None):
+    if not user_id:
+        user = get_object_or_404(GGUser, pk=request.session['user_id'])
+    else:
+        user = get_object_or_404(GGUser, pk=user_id)
     totals = defaultdict(int)
     for answer in user.answers.all():
         for weighted_group in answer.gggroupweight_set.all():
