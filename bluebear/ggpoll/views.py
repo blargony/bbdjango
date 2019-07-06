@@ -38,16 +38,18 @@ def begin(request):
 
 
 def ask_question(request, question_id):
+    """Get and Post view for working through the list of questions."""
     question = get_object_or_404(GGQuestion, pk=question_id)
     answers = get_object_or_404(GGAnswer, pk=question_id)
     question_count = len(GGQuestion.objects.all())
     try:
         selected_answer = question.gganswer_set.get(pk=request.POST["answer"])
     except (KeyError, GGAnswer.DoesNotExist):
-        context = {"question": question,
-                   "question_count": question_count,
-                   "answers": answers,
-                   }
+        context = {
+            "question": question,
+            "question_count": question_count,
+            "answers": answers,
+        }
         if request.method == "POST":
             context = {"error_message": "You didn't select an answer!"}
         return render(request, "ggpoll/ask_question.html", context)
@@ -55,15 +57,15 @@ def ask_question(request, question_id):
         user = get_object_or_404(GGUser, pk=request.session['user_id'])
         user.answers.add(selected_answer)
         user.save()
-        try:
-            next_question = GGQuestion.objects.get(pk=question_id+1)
+        next_question = GGQuestion.objects.filter(
+            active=True, pk__gt=question.pk).order_by('pk').first()
+        if next_question:
             return HttpResponseRedirect(reverse("ggpoll:ask_question", args=(next_question.id,)))
-        except GGQuestion.DoesNotExist:
-            return HttpResponseRedirect(reverse("ggpoll:results"))
-
+        return HttpResponseRedirect(reverse("ggpoll:results"))
 
 
 def results(request, user_id=None):
+    """Add up the users scores and show the results."""
     if not user_id:
         user = get_object_or_404(GGUser, pk=request.session['user_id'])
     else:
@@ -73,8 +75,9 @@ def results(request, user_id=None):
         for weighted_group in answer.gggroupweight_set.all():
             totals[weighted_group.group] += weighted_group.weight
     sorted_totals = sorted(totals, key=totals.get)
-    context = {"top_score": sorted_totals[-1],
-               "totals": totals.items(),
-               "user": user,
-               }
+    context = {
+        "top_score": sorted_totals[-1],
+        "totals": totals.items(),
+        "user": user,
+    }
     return render(request, "ggpoll/results.html", context)
