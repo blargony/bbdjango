@@ -1,0 +1,91 @@
+[
+{
+    "model": "bbpoll.question",
+    "pk": 1,
+    "fields": {
+        "question_text": "What's your favorite color?",
+        "pub_date": "2018-09-16T01:11:45Z"
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 1,
+    "fields": {
+        "question": 1,
+        "choice_text": "Red",
+        "votes": 1
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 2,
+    "fields": {
+        "question": 1,
+        "choice_text": "Blue",
+        "votes": 3
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 4,
+    "fields": {
+        "question": 1,
+        "choice_text": "Yellow",
+        "votes": 0
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 5,
+    "fields": {
+        "question": 1,
+        "choice_text": "Green",
+        "votes": 0
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 6,
+    "fields": {
+        "question": 1,
+        "choice_text": "Orange",
+        "votes": 0
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 7,
+    "fields": {
+        "question": 1,
+        "choice_text": "Purple",
+        "votes": 1
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 8,
+    "fields": {
+        "question": 1,
+        "choice_text": "Pink",
+        "votes": 1
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 9,
+    "fields": {
+        "question": 1,
+        "choice_text": "Black",
+        "votes": 0
+    }
+},
+{
+    "model": "bbpoll.choice",
+    "pk": 10,
+    "fields": {
+        "question": 1,
+        "choice_text": "White",
+        "votes": 1
+    }
+}
+]
